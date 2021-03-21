@@ -1,4 +1,4 @@
-// onSnapShow se luon chay dau tien
+// onSnapShot se luon chay dau tien
 
 function indexOf(id) {
   let index = 0;

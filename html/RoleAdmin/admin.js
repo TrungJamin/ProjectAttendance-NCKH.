@@ -61,5 +61,5 @@ addTeacher.addEventListener("click", (event) => {
   iFrame.src = "/html/Teacher/addTeacher.html";
 });
 listTeacher.addEventListener("click", (event) => {
-  iFrame.src = "/html/Teacher/allTeacher.html";
+  iFrame.src = "./Teacher/allTeacher.html";
 });

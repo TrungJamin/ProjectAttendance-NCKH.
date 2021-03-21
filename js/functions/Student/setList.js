@@ -205,3 +205,72 @@ function setOrdinalNumbers() {
     i++;
   }
 }
+
+//                                                 SEARCH LIST
+const search = document.getElementById("Student-search");
+// Get data form firebase
+
+/*  db.collection("Students2")
+    .get()
+    .then((snapShot) => {
+      snapShot.docs.forEach((doc) => {
+        listOfStudent.push(doc.data());
+      });
+    })
+    .then(() => {
+      setList(listOfStudent);
+    }); */
+
+// SEARCH
+search.addEventListener("input", (e) => {
+  let value = e.target.value;
+
+  if (value && value.trim().length > 0) {
+    value = value
+      .split(" ")
+      .filter((item) => item != "")
+      .join(" ")
+      .toLowerCase();
+    let tmp = listOfStudent.filter((student) => {
+      return (
+        student.name.toLowerCase().includes(value) ||
+        student.id.toString().toLowerCase().includes(value) ||
+        student.class.toLowerCase().includes(value) ||
+        student.gender.toLowerCase().includes(value) ||
+        student.phone.toLowerCase().includes(value)
+      );
+    });
+    setList(tmp);
+  } else {
+    setList(listOfStudent);
+  }
+});
+
+//                                                           SORT LIST
+function sortAtoZ() {
+  if (listOfStudent.length > 0) {
+    listOfStudent.sort((student1, student2) => {
+      return getLastName(student1.name) - getLastName(student2.name);
+    });
+    setList(listOfStudent);
+  }
+}
+
+function sortZtoA() {
+  if (listOfStudent.length > 0) {
+    listOfStudent.sort((student1, student2) => {
+      return getLastName(student2.name) - getLastName(student1.name);
+    });
+    setList(listOfStudent);
+  }
+}
+function getLastName(name) {
+  let temp = name.split(" ");
+
+  return temp[temp.length - 1].toLowerCase().charCodeAt(0);
+}
+// let a = [5, 3, 9, 2];
+// console.log(a);
+// a.sort((a, b) => a - b);
+// console.log(a);
+// console.log(listOfStudent);
